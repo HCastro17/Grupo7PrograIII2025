@@ -4,6 +4,9 @@
 
 package com.mycompany.hojadecalculog7p3;
 
+//author @Heber Castro
+//author @Melvin Tambito
+
 import java.util.Scanner;
 
 class Celda {
@@ -122,6 +125,45 @@ public class HojaDeCalculoG7P3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         HojaCalculo hoja = new HojaCalculo();
-       
+
+        while (true) {
+            System.out.println("\nOpciones: 1) Insertar 2) Modificar 3) Eliminar 4) Imprimir 5) Operar 6) Salir");
+            int opcion = scanner.nextInt();
+            if (opcion == 6) break;
+            
+            int fila, columna;
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese fila, columna y valor: ");
+                    fila = scanner.nextInt();
+                    columna = scanner.nextInt();
+                    double valor = scanner.nextDouble();
+                    hoja.insertar(fila, columna, valor);
+                    break;
+                case 2:
+                    System.out.print("Ingrese fila, columna y nuevo valor: ");
+                    fila = scanner.nextInt();
+                    columna = scanner.nextInt();
+                    double nuevoValor = scanner.nextDouble();
+                    hoja.modificar(fila, columna, nuevoValor);
+                    break;
+                case 3:
+                    System.out.print("Ingrese fila y columna a eliminar: ");
+                    fila = scanner.nextInt();
+                    columna = scanner.nextInt();
+                    hoja.eliminar(fila, columna);
+                    break;
+                case 4:
+                    hoja.imprimirHoja();
+                    break;
+                case 5:
+                    System.out.print("Ingrese operación (sumar/restar/multiplicar/dividir), fila inicio, col inicio, fila fin, col fin: ");
+                    String operacion = scanner.next();
+                    int fila1 = scanner.nextInt(), col1 = scanner.nextInt(), fila2 = scanner.nextInt(), col2 = scanner.nextInt();
+                    System.out.println("Resultado: " + hoja.operar(operacion, fila1, col1, fila2, col2));
+                    break;
+            }
+        }
+        scanner.close();
     }
 }
